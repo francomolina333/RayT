@@ -251,8 +251,6 @@ camera_rotY_slider = gui.add_slider(
     "camera Y angle", -180, 180, 0, resolution=1)
 camera_rotX_slider = gui.add_slider("camera X angle", -90, 90, 0, resolution=1)
 fov_slider = gui.add_slider("fov", 25, 120, 60, resolution=1)
-texture_type_radio_button = gui.add_radio_buttons("Texture type", options_dict={
-    "Environment mapping": 2, "2D texture": 1, "mix": 0}, initial_option="2D texture")
 
 
 # Run a loop to keep the program running
