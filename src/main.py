@@ -215,9 +215,12 @@ glEnableVertexAttribArray(position_loc)
 '''
 # obj_tex_id = load_2d_texture("objects/rayman/raymanModel.png")
 obj_tex_id = load_2d_texture("objects/wood2.png")
+receiver_tex_id = load_2d_texture("objects/wood2.png")
 
+shaderProgram_obj["tex2D"] = 0
 
-# shaderProgram_obj["tex2D"] = 1   # Okay this might be confusing. Here 0 indicates texture unit 0. Note that "tex" is a sampler variable in the fragment shader. It is not an integer.
+# Okay this might be confusing. Here 0 indicates texture unit 0. Note that "tex" is a sampler variable in the fragment shader. It is not an integer.
+# shaderProgram_obj["tex2D"] = 0
 # **************************************************************************************************************
 # **************************************************************************************************************
 
@@ -247,6 +250,8 @@ camera_rotY_slider = gui.add_slider(
     "camera Y angle", -180, 180, 0, resolution=1)
 camera_rotX_slider = gui.add_slider("camera X angle", -90, 90, 0, resolution=1)
 fov_slider = gui.add_slider("fov", 25, 120, 45, resolution=1)
+material_color_picker = gui.add_color_picker(
+    "Background", initial_color=(1.0, 0.1, 0.1))
 
 
 # Run a loop to keep the program running
@@ -296,9 +301,11 @@ while draw:
     shaderProgram_obj["ambientIntensity"] = 0.25
     shaderProgram_obj["diffuseIntensity"] = 0.8
 
+    shaderProgram_obj["Background"] = material_color_picker.get_color()
+
     # min and max bounds (coordinates) of Axis Aligned Bounding Box
-    shaderProgram_obj["minBound"] = (-0.5, -0.5, -0.5)
-    shaderProgram_obj["maxBound"] = (0.5, 0.5, 0.5)
+    shaderProgram_obj["minBound"] = (-3, -3, -3)
+    shaderProgram_obj["maxBound"] = (3, 3, 3)
 
     shaderProgram_obj["cameraU"] = pyrr.Vector3(
         [view_mat[0][0], view_mat[1][0], view_mat[2][0]])
